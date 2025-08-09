@@ -1,13 +1,14 @@
+# --- required versions of python and R ---
 ARG R_VERSION=4.3.3
 ARG PYTHON_VERSION=3.12
 
-# --- Докер образ для Jupyter с Python ---
+# --- Docker image for Jupyter with Python ---
 # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-minimal-notebook
 FROM quay.io/jupyter/minimal-notebook:python-$PYTHON_VERSION
 
 USER root
 
-# --- Установка необходимых пакетов и шрифтов ---
+# --- Installing the required packages and fonts ---
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y --no-install-recommends fontconfig debconf && \
@@ -16,7 +17,7 @@ RUN apt-get update && \
     fc-cache -f -v && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# --- Установка системных зависимостей и утилит ---
+# --- Installing system dependencies and utilities ---
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git-lfs \
     libcurl4-openssl-dev \
@@ -26,5 +27,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git lfs install && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# --- Установка R нужной версии ---
+# --- Installing the required version of R ---
 RUN mamba install -y r-base=$R_VERSION && mamba clean --all -f -y
