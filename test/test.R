@@ -1,0 +1,10 @@
+print('hello from RScript')
+print(R.version.string)
+
+vec1 <- matrix(c(1, 2, 3, 4), nrow=4,ncol=1)
+vec2 <- matrix(c(2, 2, 3, 4), nrow=1,ncol=4)
+print('Matrix multiplication of vectors:')
+print(vec1)
+print(vec2)
+print('Result')
+print(vec1 %*% vec2)

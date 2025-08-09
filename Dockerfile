@@ -4,7 +4,7 @@ ARG PYTHON_VERSION=3.12
 
 # --- Docker image for Jupyter with Python ---
 # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-minimal-notebook
-FROM quay.io/jupyter/minimal-notebook:python-$PYTHON_VERSION
+FROM quay.io/jupyter/minimal-notebook:python-${PYTHON_VERSION}
 
 USER root
 
@@ -28,4 +28,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # --- Installing the required version of R ---
-RUN mamba install -y r-base=$R_VERSION && mamba clean --all -f -y
+RUN mamba install -y -c conda-forge --strict-channel-priority r-base=${R_VERSION} && mamba clean --all -f -y
