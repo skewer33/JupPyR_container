@@ -5,29 +5,16 @@ The image also includes `git`, `git lfs`, `curl`, `nano` (actually `nano-tiny`),
 For characteristics of the jupyter-minimal notebook prototype, see [link](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-minimal-notebook)
 
 ## Quickstart
-Quickstart involves downloading and building the image and running the container.
-
 Go to the working directory and run:
 
-#### UNIX
-```bash
-cd path/to/dir
-chmod +x quick_start.sh
-bash quick_start.sh
-```
-#### Windows
-```bash
-cd path/to/dir
-sh quick_start.sh
-```
-
-## Build
-Go to the working directory, copy the image from github and build it.
 ```bash
 cd path/to/dir
 git clone https://github.com/skewer33/JupPyR_container.git
 docker build -t juppyr_container .
+docker-compose up
 ```
+
+## Build
 
 You can explicitly specify the version of Python and R by specifying them as arguments `PYTHON_VERSION` and `R_VERSION` when building the image.
 
